@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html, body, .root {
+  min-height: 100%;
+}
+
+body, input, button {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.container {
+  display: flex;
+  margin: 80px auto 0;
+  max-width: 600px;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+}
+
+.initial-content {
+  background-color: #cccccc;
+  width: 480px;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.title {
+  margin: 20px 0;
+  text-align: center;
+  font-weight: 300;
+}
+
+.headers {
+  display: grid;
+  grid-template-columns: repeat( 2 , 1fr);
+}
+
+.headers h3 {
+  cursor: pointer;
+  color: #fff;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: 30px 200px;
+}
+
+
+.form-login input {
+  height: 40px;
+  width: 400px;
+  border:1px solid #bbb;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  background-color: #496363;
+}
+
+.form-login input::placeholder {
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+.form-login input:hover {
+  background-color: #fff;
+  transition: all 0.5s;
+}
+
+.form-login button {
+  background-color: #E9EBE5;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 200px;
+  align-self: center;
+  color: #707070;
+  font-weight: bold;
+  cursor: pointer;
+  height: 30px;
+  align-content: center;
+  margin-top: 10px;
+}
+
+.form-login button:hover{
+  background-color: rgb(211, 208, 208);
+  box-shadow: #707070 2px 2px 2px;
+  color: #fff;
+  transition: all 0.5s;
+} 
