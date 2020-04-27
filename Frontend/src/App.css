@@ -101,3 +101,29 @@ body, input, button {
   color: #fff;
   transition: all 0.5s;
 } 
+
+/*=== HEADER STYLE ===*/
+
+.header-container {
+  background-color: #929B7B;
+}
+
+.form-ul {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  right: 0;
+  top: 0;
+  list-style: none;
+  padding: 15px 30px 15px 0;
+  background-color: #929B7B;
+}
+
+.form-ul li {
+  margin: 0 5px;
+  
+}
+
+.form-ul li button, h2 {
+  text-transform: uppercase;
+}

@@ -2,7 +2,6 @@ import React, { useState }from 'react';
 
 import '../App.css';
 
-
 export default function Login({ history }) {
   const [email, setEmail] = useState('');
   const [user, setUser] = useState('');
@@ -17,6 +16,7 @@ export default function Login({ history }) {
   
 
   return (
+
       <div className="initial-content">
       <h1 className="title">Chat Online - Login</h1>
       
