@@ -1,10 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import queryString from 'query-string';
+import io from 'socket.io-client';
 
 import Footer from '../components/Footer';
 
-export default function Dashboard() {
+let socket
 
-  const user = localStorage.getItem('user')
+export default function Dashboard({ location }) {
+  const [client, setClient] = useState('');
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
+
+  const ENDPOINT = 'localhost:5000';
+
+  useEffect(()=>{
+    const {name} = queryString.parse(location.search);
+    socket = io(ENDPOINT)
+
+    setClient(client);
+
+    socket.emit('join', {name}, () => {
+
+    });
+
+    return () => {
+      socket.emit('disconnect');
+
+      socket.off();
+    }
+    
+  }, [ENDPOINT, location.search]);
+
+  useEffect(() => {
+    socket.on('message', (message) => {
+      setMessages([...messages, message]);
+    })
+  }, [messages]);
+
+  const sendMessage = (event) => {
+    event.preventDefault();
+
+    if(message) {
+    socket.emit('sendMessage', message, () => setMessage(''));
+  }
+}
+
+console.log(message, messages);
+
 
   return (
     <>
@@ -15,7 +57,7 @@ export default function Dashboard() {
           <label htmlFor="user-photo">Escolher/Mudar foto</label>
           <input type="file" id="user-photo"/>
           <button>SAIR</button>
-          <p>{user}<span></span></p>
+          <p><span></span></p>
         </div>
       </div>
       <div className="main-div">
@@ -25,7 +67,7 @@ export default function Dashboard() {
         <label htmlFor="input-field">
 
         </label>
-        <input type="text" name="" id="input-field" placeholder="Digite sua mensagem aqui"/>
+        <input type="text" name="" id="input-field" placeholder="Digite sua mensagem aqui" value={message} onChange={event => setMessage(event.target.value)} onKeyPress={event => event.key === 'Enter'?sendMessage(event):null}/>
       </div>
     </div>
     <Footer/>

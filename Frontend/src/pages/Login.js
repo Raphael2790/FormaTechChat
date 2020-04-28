@@ -8,20 +8,9 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 
-export default function Login({ history }) {
-
-  const [user, setUser] = useState('');
-
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    localStorage.setItem('user', user);
-
-    history.push('/dashboard');
-  }
+export default function Login() {
+  const [client, setClient] = useState('');
   
-
   return (
     
     <>
@@ -44,14 +33,15 @@ export default function Login({ history }) {
           </Link>
         </div>
 
-        <form className="form-login" onSubmit={handleSubmit}>
+        <form className="form-login">
           <div className="inputs">
           <label htmlFor="name"><span class="material-icons">
           face</span></label>
-          <input type="text" id="name" placeholder="Digite um nome de usuario" onChange={event => setUser(event.target.value)} value={user} required/>
+          <input type="text" id="name" placeholder="Digite um nome de usuario" onChange={event => setClient(event.target.value)} value={client} required/>
           </div>
-
+          <Link onClick={event => !client?event.preventDefault():null} to={`/dashboard?name=${client}`}>
           <button type="submit">Entrar</button>
+          </Link>
         </form>
       </div>
 
