@@ -2,7 +2,7 @@ const express = require('express');
 const socketio = require('socket.io');
 const http = require('http');
 const cors = require('cors');
-const {addUser, removeUser, getUser, allUsers} = require('./user');
+const {addUser, removeUser, getUser, allUsers} = require('./user.js');
 
 const PORT = process.env.PORT || 5000;
 
@@ -22,19 +22,26 @@ io.on('connection', (socket) => {
 
     socket.join(user);
 
+    //io.emit('roomData', {users:allUsers(users.name)})
+
     callback();
   });
 
   socket.on('sendMessage', (message, callback) => {
-    const client = getUser(socket.id);
+    const user = getUser(socket.id);
 
-    io.emit('message', {client:client.name, text:message});
+    io.emit('message', {user:user.name, text:message});
+    //io.emit('roomData', {users:allUsers(users.name)} )
 
     callback();
   })
 
   socket.on('disconnect', () => {
-    console.log('Um usuário desconectou')
+    const user = removeUser(socket.id);
+
+    if(user) {
+      io.emit('message', {user:'admin', text:`${user.name} saiu`})
+    }
   })
 });
 

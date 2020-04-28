@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import logo from '../assets/logo.png';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../components/HeaderLogin/HeaderLogin';
+import Footer from '../components/Footer/Footer';
 
 
 export default function Login() {

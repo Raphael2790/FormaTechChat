@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
 import io from 'socket.io-client';
 
-import Footer from '../components/Footer';
+import Footer from '../components/Footer/Footer';
+import InfoBar from '../components/InfoBar/InfoBar';
+import Input from '../components/Input/Input';
+import Messages from '../components/Messages/Messages';
 
 let socket
 
@@ -17,11 +20,15 @@ export default function Dashboard({ location }) {
     const {name} = queryString.parse(location.search);
     socket = io(ENDPOINT)
 
-    setClient(client);
+    setClient(name);
 
-    socket.emit('join', {name}, () => {
-
+    socket.emit('join', {name}, (error) => {
+      if(error) {
+        alert(error);
+      }
     });
+
+  
 
     return () => {
       socket.emit('disconnect');
@@ -61,13 +68,11 @@ console.log(message, messages);
         </div>
       </div>
       <div className="main-div">
-        <button>
-          <span className="material-icons">send</span>
-        </button>
-        <label htmlFor="input-field">
-
-        </label>
-        <input type="text" name="" id="input-field" placeholder="Digite sua mensagem aqui" value={message} onChange={event => setMessage(event.target.value)} onKeyPress={event => event.key === 'Enter'?sendMessage(event):null}/>
+        <div className="containerDash">
+        <InfoBar client={client}/>
+        <Messages messages={messages} client={client}/>
+        <Input message={message} sendMessage={sendMessage} setMessage={setMessage}/>
+        </div>
       </div>
     </div>
     <Footer/>

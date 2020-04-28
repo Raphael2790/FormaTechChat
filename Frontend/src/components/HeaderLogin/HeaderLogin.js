@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
+import './HeaderLogin.css';
 
-export default function Header() {
+export default function HeaderLogin() {
 
   function handleSubmit(e) {
     e.preventDefault();

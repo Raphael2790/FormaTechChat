@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import logofacebook from '../assets/facebook.png';
-import logolinkedin from '../assets/linkedin.png';
-import logoyoutube from '../assets/youtube.png';
-import logofooter from '../assets/logo_footer.png';
+import './Footer.css';
+
+import logofacebook from '../../assets/facebook.png';
+import logolinkedin from '../../assets/linkedin.png';
+import logoyoutube from '../../assets/youtube.png';
+import logofooter from '../../assets/logo_footer.png';
 
 
 export default function Footer() {
