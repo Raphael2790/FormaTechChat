@@ -36,13 +36,13 @@ export default function Register({ history }) {
 
     <form className="form-register">
         <div className="inputs">
-        <label htmlFor="name"><span class="material-icons">
+        <label htmlFor="name"><span className="material-icons">
         face</span></label>
         <input type="text" id="name" placeholder="Digite um nome de usuario" onChange={event => setClient(event.target.value)} value={client} required/>
         </div>
 
         <div className="inputs">
-        <label htmlFor="email"><span class="material-icons">
+        <label htmlFor="email"><span className="material-icons">
         alternate_email</span></label>
         <input type="email" id="email" placeholder="Digite um email valido para logar-se" onChange={event => setEmail(event.target.value)} value={email} required/>
         </div>

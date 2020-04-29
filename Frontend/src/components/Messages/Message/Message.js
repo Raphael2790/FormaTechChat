@@ -10,8 +10,12 @@ export default function Message({ message:{text,user}, client }) {
     month:now.getMonth(),
     day:now.getDate(),
     hours:now.getHours(),
-    minutes:now.getMinutes()
+    minutes:now.getMinutes(),
   }
+
+  const dateStamp = `${timeStamp.day}/${timeStamp.month < 10?`0${timeStamp.month}`:timeStamp.month}/${timeStamp.year}`;
+
+  const hourStamp = `${timeStamp.hours}:${timeStamp.minutes}`
 
   let isSentByCurrentUser = false;
 
@@ -21,13 +25,11 @@ export default function Message({ message:{text,user}, client }) {
     isSentByCurrentUser = true;
   }
 
-  console.log(trimmedName, user);
-
   return (
     isSentByCurrentUser
     ?(
       <div className="messageContainer justifyEnd">
-        <p className="sentText pr-10">{`${timeStamp.day}/${timeStamp.month < 10?`0${timeStamp.month}`:timeStamp.month}/${timeStamp.year}-${trimmedName}-${timeStamp.hours}:${timeStamp.minutes}`}</p>
+        <p className="sentText pr-10">{dateStamp}-{trimmedName}-{hourStamp}</p>
         <div className="messageBox backgroundBlue">
           <p className="messageText colorWhite">{text}</p>
         </div>
@@ -38,7 +40,7 @@ export default function Message({ message:{text,user}, client }) {
         <div className="messageBox backgroundLight">
           <p className="messageText colorDark">{text}</p>
         </div>
-        <p className="sentTextText pl-10">{`${timeStamp.day}/${timeStamp.month < 10?`0${timeStamp.month}`:timeStamp.month}/${timeStamp.year}-${user}-${timeStamp.hours}:${timeStamp.minutes}`}</p>
+        <p className="sentTextText pl-10">{dateStamp}-{user}-{hourStamp}</p>
       </div>
     )
   )

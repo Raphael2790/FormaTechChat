@@ -7,10 +7,10 @@ import Message from './Message/Message';
 
 export default function Messages({ messages, client }) {
   return (
-    <div>
-      <ScrollToBottom className="messages" >
+    
+      <ScrollToBottom classname=".messages">
         {messages.map((message, i) => <div key={i}><Message message={message} client={client}/></div>)}
       </ScrollToBottom>
-    </div>
+
   )
 }

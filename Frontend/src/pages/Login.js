@@ -35,7 +35,7 @@ export default function Login() {
 
         <form className="form-login">
           <div className="inputs">
-          <label htmlFor="name"><span class="material-icons">
+          <label htmlFor="name"><span className="material-icons">
           face</span></label>
           <input type="text" id="name" placeholder="Digite um nome de usuario" onChange={event => setClient(event.target.value)} value={client} required/>
           </div>
