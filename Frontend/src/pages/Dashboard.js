@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import queryString from 'query-string';
 import io from 'socket.io-client';
+
+import camera from '../assets/camera.svg';
+import logo from '../assets/logo_footer.png';
 
 import Footer from '../components/Footer/Footer';
 import InfoBar from '../components/InfoBar/InfoBar';
@@ -13,8 +16,13 @@ export default function Dashboard({ location }) {
   const [client, setClient] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const [thumbnail, setThumbnail] = useState('');
 
   const ENDPOINT = 'localhost:5000';
+
+  const preview = useMemo(() => {
+    return thumbnail?URL.createObjectURL(thumbnail): null;
+  } , [thumbnail])
 
   useEffect(()=>{
     const {name} = queryString.parse(location.search);
@@ -59,12 +67,23 @@ console.log(message, messages);
     <>
     <div>
       <div className="chat-header">
+        <div className="chatName">
+        <img src={logo} alt="Logo FormareTech"/>
         <h3>Chat - FormareTech</h3>
+        </div>
         <div className="features-user">
-          <label htmlFor="user-photo">Escolher/Mudar foto</label>
-          <input type="file" id="user-photo"/>
-          <button>SAIR</button>
-          <p><span></span></p>
+        <label 
+        id="thumbnail"
+        style={{backgroundImage:`url(${preview})`}}
+        className={thumbnail?"has-thumbnail":""}
+        >
+          <img src={camera} alt="Imagem Thumbnail"/>
+          <input type="file" onChange={event => setThumbnail(event.target.files[0])}/>
+        </label>
+          <a href="/"><span class="material-icons">
+          exit_to_app
+          </span></a>
+          
         </div>
       </div>
       <div className="main-div">

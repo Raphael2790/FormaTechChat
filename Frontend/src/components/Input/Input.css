@@ -24,4 +24,5 @@ input:focus, textarea:focus, select:focus{
   border: none;
   width: 20%;
   border-radius: 20px;
+  cursor: pointer;
 }
